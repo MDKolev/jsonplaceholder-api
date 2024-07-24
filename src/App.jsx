@@ -4,7 +4,11 @@ function App() {
 
   return (
     <>
-      <div className='container'></div>
+      <div className='container'>
+        <div className='data-window'>
+          <span className='title'>JSONPlaceholder API</span>
+        </div>
+      </div>
     </>
   )
 }
