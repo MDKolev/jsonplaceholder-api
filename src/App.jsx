@@ -1,15 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [sortedUsers, setSortedUsers] = useState([]);
+  const [sortOrder, setSortOrder] = useState("a-z");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  const fetchUsersData = async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await response.json();
-    setUsers(data);
-    console.log(users);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const data = await response.json();
+      setUsers(data);
+      setSortedUsers(data);
+    };
+
+    fetchUsers();
+  }, []);
+
+  const sortUsers = (order) => {
+    const sorted = [...users].sort((a, b) => {
+      if (order === "a-z") {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    setSortOrder(order);
+    setSortedUsers(sorted);
   };
+
+  const indexOfLastUser = currentPage * itemsPerPage;
+  const indexOfFirstUser = indexOfLastUser - itemsPerPage;
+  const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
 
   return (
     <>
@@ -28,8 +54,12 @@ function App() {
                   <option value={5}>5</option>
                 </select>
               </div>
-              <button className="sort-button">Sort A-Z</button>
-              <button className="sort-button">Sort Z-A</button>
+              <button className="sort-button" onClick={() => sortUsers("a-z")}>
+                Sort A-Z
+              </button>
+              <button className="sort-button" onClick={() => sortUsers("z-a")}>
+                Sort Z-A
+              </button>
             </div>
           </div>
           <div className="secondary-container">
@@ -57,8 +87,8 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user) => (
-                    <tr>
+                  {currentUsers.map((user) => (
+                    <tr key={user.id}>
                       <td>{user.name}</td>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
