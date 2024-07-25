@@ -49,8 +49,6 @@ body{
           }
         }
 
-       
-
         button {
           font-size: 1rem;
           border-radius: 0.3rem;
@@ -59,24 +57,21 @@ body{
           transition: 0.5s ease;
           background-color: transparent;
         }
-
     
-          .sort-button {
-            color: #fff;
-            border-radius: 0.5rem;
-            border: 1px solid orange;
-            box-shadow: 10px 5px 5px orange; 
-           }
+        .sort-button {
+          color: #fff;
+          border-radius: 0.5rem;
+          border: 1px solid orange;
+          box-shadow: 10px 5px 5px orange; 
+        }
       
-           .sort-button:hover {
-            color: #fff;
-            background-color: orange;
-            box-shadow: none;
-            cursor: pointer;
-            border: 1px solid orange;
-           }
-
-        
+        .sort-button:hover {
+          color: #fff;
+          background-color: orange;
+          box-shadow: none;
+          cursor: pointer;
+          border: 1px solid orange;
+        }        
       }
     }
 
@@ -150,8 +145,26 @@ body{
         flex: 1;
         display: flex;
         justify-content: center;
+        flex-direction: column;
         margin: 2rem;
         background-color: #b2b2b2;
+
+        .pagination {
+          background-color: #8f8f8f;
+          text-align: center;
+        }
+
+        .pagination button {
+          background-color: transparent;
+          border: none;
+          font-size: 1rem;
+          padding: 0.5rem;
+          cursor: pointer;
+        }
+
+        .pagination button:hover{
+          font-weight: bold;
+        }
         
         table {
           width: 100%;

@@ -46,9 +46,7 @@ function App() {
             <div className="button-container">
               <div className="pagination-settings">
                 <label htmlFor="itemsPerPage">Items per page:</label>
-                <select
-                  id="itemsPerPage"
-                >
+                <select id="itemsPerPage">
                   <option value={1}>1</option>
                   <option value={3}>3</option>
                   <option value={5}>5</option>
@@ -96,6 +94,12 @@ function App() {
                   ))}
                 </tbody>
               </table>
+              <div className="pagination">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+              </div>
             </div>
           </div>
         </div>
