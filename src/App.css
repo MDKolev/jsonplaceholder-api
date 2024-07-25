@@ -22,8 +22,63 @@ body{
     height: 70vh;
     padding: 2rem 2rem;
     display: flex;
-    align-items: start;
     flex-direction: column;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.25rem;
+
+      .button-container {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap:1rem;
+
+        .pagination-settings {
+          border-bottom: 1px solid black;
+
+          label {
+            font-size: 1rem;
+          }
+  
+          select {
+            background-color: transparent;
+            border: none;
+          }
+        }
+
+       
+
+        button {
+          font-size: 1rem;
+          border-radius: 0.3rem;
+          border: none;
+          padding: 0.25rem 1rem;
+          transition: 0.5s ease;
+          background-color: transparent;
+        }
+
+    
+          .sort-button {
+            color: #fff;
+            border-radius: 0.5rem;
+            border: 1px solid orange;
+            box-shadow: 10px 5px 5px orange; 
+           }
+      
+           .sort-button:hover {
+            color: #fff;
+            background-color: orange;
+            box-shadow: none;
+            cursor: pointer;
+            border: 1px solid orange;
+           }
+
+        
+      }
+    }
 
     .title {
       color: #fff;
