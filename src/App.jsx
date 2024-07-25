@@ -1,6 +1,22 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+
+  const [users, setUsers] = useState([]);
+
+
+
+    const fetchUsersData = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await response.json();
+      setUsers(data);
+      console.log(users);
+    };
+
+
+
+
   return (
     <>
       <div className="main-container">
@@ -8,7 +24,7 @@ function App() {
           <span className="title">JSONPlaceholder API</span>
           <div className="secondary-container">
             <div className="sidebar">
-              <button className="fetch-button">Fetch Users</button>
+              <button className="fetch-button" onClick={() => fetchUsersData(users)}>Fetch Users</button>
               <button className="reset-button">Reset</button>
             </div>
             <div className="data-table">
@@ -18,40 +34,18 @@ function App() {
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
-                    <th>More Info</th>
+                    <th>More<br/>Info</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Leanne Graham</td>
-                    <td>Bret</td>
-                    <td>Sincere@april.bizgadfg</td>
-                    <td>Row 1, Cell 4</td>
-                  </tr>
-                  <tr>
-                    <td>Row 2, Cell 1</td>
-                    <td>Row 2, Cell 2</td>
-                    <td>Row 2, Cell 3</td>
-                    <td>Row 2, Cell 4</td>
-                  </tr>
-                  <tr>
-                    <td>Row 3, Cell 1</td>
-                    <td>Row 3, Cell 2</td>
-                    <td>Row 3, Cell 3</td>
-                    <td>Row 3, Cell 4</td>
-                  </tr>
-                  <tr>
-                    <td>Row 4, Cell 1</td>
-                    <td>Row 4, Cell 2</td>
-                    <td>Row 4, Cell 3</td>
-                    <td>Row 4, Cell 4</td>
-                  </tr>
-                  <tr>
-                    <td>Row 5, Cell 1</td>
-                    <td>Row 5, Cell 2</td>
-                    <td>Row 5, Cell 3</td>
-                    <td>Row 5, Cell 4</td>
-                  </tr>
+                  {users.map(user => (
+                    <tr>
+                      <td>{user.name}</td>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                    </tr>
+                  ))}
+                 
                 </tbody>
               </table>
             </div>
