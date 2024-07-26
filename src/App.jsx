@@ -36,6 +36,14 @@ function App() {
   const indexOfLastUser = currentPage * itemsPerPage;
   const indexOfFirstUser = indexOfLastUser - itemsPerPage;
   const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(sortedUsers.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleItemsPerPage = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(1);
+  };
 
   return (
     <>
@@ -46,7 +54,11 @@ function App() {
             <div className="button-container">
               <div className="pagination-settings">
                 <label htmlFor="itemsPerPage">Items per page:</label>
-                <select id="itemsPerPage">
+                <select
+                  id="itemsPerPage"
+                  value={itemsPerPage}
+                  onChange={handleItemsPerPage}
+                >
                   <option value={1}>1</option>
                   <option value={3}>3</option>
                   <option value={5}>5</option>
@@ -95,10 +107,11 @@ function App() {
                 </tbody>
               </table>
               <div className="pagination">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
+                {[...Array(totalPages)].map((ignored, index) => (
+                  <button key={index} onClick={() => paginate(index + 1)}>
+                    {index + 1}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
