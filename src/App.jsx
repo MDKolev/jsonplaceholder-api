@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { IoInformationCircleOutline } from "react-icons/io5";
+
 import "./App.css";
 
 function App() {
@@ -7,6 +9,7 @@ function App() {
   const [sortOrder, setSortOrder] = useState("a-z");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [expandedRow, setExpandedRow] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -43,6 +46,10 @@ function App() {
   const handleItemsPerPage = (event) => {
     setItemsPerPage(Number(event.target.value));
     setCurrentPage(1);
+  };
+
+  const toggleRow = (userId) => {
+    setExpandedRow(expandedRow === userId ? null : userId);
   };
 
   return (
@@ -98,11 +105,39 @@ function App() {
                 </thead>
                 <tbody>
                   {currentUsers.map((user) => (
-                    <tr key={user.id}>
-                      <td>{user.name}</td>
-                      <td>{user.username}</td>
-                      <td>{user.email}</td>
-                    </tr>
+                    <React.Fragment key={user.id}>
+                      <tr
+                        className={expandedRow === user.id ? "expanded-row" : ""}
+                        onClick={() => toggleRow(user.id)}
+                      >
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.username}</td>
+                        <td className="data-info">
+                          <IoInformationCircleOutline className="icon" />
+                        </td>
+                      </tr>
+                      {expandedRow === user.id && (
+                        <tr>
+                          <td colSpan="4" className="additional-info-td">
+                            <div className="additional-info">
+                              <p>
+                                <strong>Address:</strong> {user.address.street},
+                                {user.address.suite}, {user.address.city},
+                                {user.address.zipcode}
+                              </p>
+                              <p>
+                                <strong>Company:</strong> {user.company.name}
+                                <p> -"{user.company.catchPhrase}"</p>
+                              </p>
+                              <p>
+                                <strong>BS:</strong> {user.company.bs}
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
