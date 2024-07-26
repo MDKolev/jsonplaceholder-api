@@ -107,7 +107,9 @@ function App() {
                   {currentUsers.map((user) => (
                     <React.Fragment key={user.id}>
                       <tr
-                        className={expandedRow === user.id ? "expanded-row" : ""}
+                        className={
+                          expandedRow === user.id ? "expanded-row" : ""
+                        }
                         onClick={() => toggleRow(user.id)}
                       >
                         <td>{user.name}</td>
@@ -143,7 +145,11 @@ function App() {
               </table>
               <div className="pagination">
                 {[...Array(totalPages)].map((ignored, index) => (
-                  <button key={index} onClick={() => paginate(index + 1)}>
+                  <button
+                    key={index}
+                    onClick={() => paginate(index + 1)}
+                    className={currentPage === index + 1 ? "current-page" : ""}
+                  >
                     {index + 1}
                   </button>
                 ))}

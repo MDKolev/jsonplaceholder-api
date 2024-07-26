@@ -209,6 +209,11 @@ body{
         .expanded-row {
           background-color: #e0e0e0; /* Light color for expanded rows */
         }
+
+        .current-page {
+          text-decoration: underline;
+          font-weight: bold;
+        }
       }
     }
   }
