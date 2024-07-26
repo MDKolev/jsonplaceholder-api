@@ -110,12 +110,12 @@ function App() {
                         className={
                           expandedRow === user.id ? "expanded-row" : ""
                         }
-                        onClick={() => toggleRow(user.id)}
+                       
                       >
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>{user.username}</td>
-                        <td className="data-info">
+                        <td className="data-info"  onClick={() => toggleRow(user.id)}>
                           <IoInformationCircleOutline className="icon" />
                         </td>
                       </tr>
