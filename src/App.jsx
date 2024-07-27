@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import loadingImage from './assets/tube-spinner.svg'
+import loadingImage from "./assets/tube-spinner.svg";
 
 import "./App.css";
 
@@ -14,6 +14,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchUsers = async () => {
+    if (users.length !== 0) {
+      return;
+    }
+
     setIsLoading(true);
     setUsers([]);
     setSortedUsers([]);
@@ -62,7 +66,6 @@ function App() {
     setSortedUsers([]);
     setIsLoading(false);
   };
-
 
   return (
     <>
@@ -117,9 +120,18 @@ function App() {
                 {users.length === 0 ? (
                   <tr>
                     <td colSpan="4" className="no-user-data">
-                      {isLoading
-                        ? (<div>Loading data ... <img src={loadingImage} alt="loading" className="loading-image"/></div>)
-                        : "No data to display, please fetch users."}
+                      {isLoading ? (
+                        <div>
+                          Loading data ...{" "}
+                          <img
+                            src={loadingImage}
+                            alt="loading"
+                            className="loading-image"
+                          />
+                        </div>
+                      ) : (
+                        "No data to display, please fetch users."
+                      )}
                     </td>
                   </tr>
                 ) : (
