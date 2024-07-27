@@ -211,7 +211,7 @@ function App() {
               </div>
             </div>
           </div>
-          <Toaster richColors />
+          <Toaster richColors duration={2000}/>
         </div>
       </div>
     </>
