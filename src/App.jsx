@@ -52,6 +52,11 @@ function App() {
     setExpandedRow(expandedRow === userId ? null : userId);
   };
 
+  const resetData = () => {
+    setUsers([]);
+    setSortedUsers([]);
+  };
+
   return (
     <>
       <div className="main-container">
@@ -87,7 +92,9 @@ function App() {
               >
                 Fetch Users
               </button>
-              <button className="reset-button">Reset</button>
+              <button className="reset-button" onClick={() => resetData()}>
+                Reset
+              </button>
             </div>
             <div className="data-table">
               <table>
@@ -103,45 +110,53 @@ function App() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {currentUsers.map((user) => (
-                    <React.Fragment key={user.id}>
-                      <tr
-                        className={
-                          expandedRow === user.id ? "expanded-row" : ""
-                        }
-                       
-                      >
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
-                        <td>{user.email}</td>
-                        <td className="data-info"  onClick={() => toggleRow(user.id)}>
-                          <IoInformationCircleOutline className="icon" />
-                        </td>
-                      </tr>
-                      {expandedRow === user.id && (
-                        <tr>
-                          <td colSpan="4" className="additional-info-td">
-                            <div className="additional-info">
-                              <p>
-                                <strong>Address:</strong> {user.address.street},
-                                {user.address.suite}, {user.address.city},
-                                {user.address.zipcode}
-                              </p>
-                              <p>
-                                <strong>Company:</strong> {user.company.name}
-                                <p> -"{user.company.catchPhrase}"</p>
-                              </p>
-                              <p>
-                                <strong>BS:</strong> {user.company.bs}
-                              </p>
-                            </div>
+                {users.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" className="no-user-data">No data to display, please fetch users.</td>
+                  </tr>
+                ) : (
+                  <tbody>
+                    {currentUsers.map((user) => (
+                      <React.Fragment key={user.id}>
+                        <tr
+                          className={
+                            expandedRow === user.id ? "expanded-row" : ""
+                          }
+                        >
+                          <td>{user.name}</td>
+                          <td>{user.username}</td>
+                          <td>{user.email}</td>
+                          <td
+                            className="data-info"
+                            onClick={() => toggleRow(user.id)}
+                          >
+                            <IoInformationCircleOutline className="icon" />
                           </td>
                         </tr>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </tbody>
+                        {expandedRow === user.id && (
+                          <tr>
+                            <td colSpan="4" className="additional-info-td">
+                              <div className="additional-info">
+                                <p>
+                                  <strong>Address:</strong>{" "}
+                                  {user.address.street},{user.address.suite},{" "}
+                                  {user.address.city},{user.address.zipcode}
+                                </p>
+                                <p>
+                                  <strong>Company:</strong> {user.company.name}
+                                  <p> -"{user.company.catchPhrase}"</p>
+                                </p>
+                                <p>
+                                  <strong>BS:</strong> {user.company.bs}
+                                </p>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </tbody>
+                )}
               </table>
               <div className="pagination">
                 {[...Array(totalPages)].map((ignored, index) => (

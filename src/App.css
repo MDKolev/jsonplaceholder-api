@@ -148,6 +148,11 @@ body{
         margin: 2rem;
         background-color: #b2b2b2;
 
+        .no-user-data {
+          padding: 1rem 1.5rem;
+          text-align: center;
+        }
+
         .data-info {
           text-align: center;
           cursor: pointer;
