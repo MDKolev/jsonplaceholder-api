@@ -719,3 +719,212 @@ body{
     }
   }
 }
+
+@media (min-width: 1025px) and (max-width: 1440px){
+
+    .header {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .button-container {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        gap:1rem;
+
+        .pagination-settings {
+          border-bottom: 1px solid black;
+
+          label {
+            font-size: 1rem;
+          }
+  
+          select {
+            background-color: transparent;
+            border: none;
+          }
+        }
+
+        button {
+          font-size: 1rem;
+          border-radius: 0.3rem;
+          border: none;
+          padding: 0.25rem 1rem;
+          transition: 0.5s ease;
+          background-color: transparent;
+        }
+    
+        .sort-button {
+          color: #000;
+          border-radius: 0.5rem;
+          border: 1px solid orange;
+          box-shadow: 10px 5px 5px orange; 
+        }
+      
+        .sort-button:hover {
+          color: #fff;
+          background-color: orange;
+          box-shadow: none;
+          cursor: pointer;
+          border: 1px solid orange;
+        }        
+      }
+    }
+
+    .title {
+      color: #fff;
+      font-size: 2rem;
+      display: block;
+    }
+
+    .sidebar{
+     width: 25%;
+     height: 100%;
+     text-align: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+
+     button{
+      width: 80%;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      color: #d1d0d0;
+      
+      transition: 0.5s ease;
+      background-color: transparent;
+     }
+
+     .fetch-button {
+      border-radius: 0.5rem;
+      border: 1px solid green;
+      box-shadow: 10px 5px 5px rgba(7, 173, 29, 0.6); 
+     }
+
+     .fetch-button:hover {
+      color: #fff;
+      background-color: green;
+      background-color: rgb(1, 183, 1);
+      box-shadow: none;
+      cursor: pointer;
+      border: 1px solid rgb(0, 79, 0);
+     }
+
+     .reset-button{
+      border-radius: 0.5rem;
+      border: 1px solid rgb(255, 0, 0);
+      box-shadow: 10px 5px 5px rgba(173, 7, 7, 0.864); 
+     }
+    
+    .reset-button:hover{
+      color:  #fff;
+      background-color: red;
+      background-color: rgb(210, 8, 8);
+      box-shadow: none;
+      cursor: pointer;
+      border: 1px solid rgba(173, 7, 7, 0.864);
+    }
+    }
+
+    .secondary-container {
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      padding: 2rem 0;
+      width: 100%;
+      height: 100%;
+
+      .data-table {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 2rem;
+        background-color: #b2b2b2;
+
+        .no-user-data {
+          padding: 1rem 1.5rem;
+          text-align: center;
+
+          .loading-image {
+            width: 1.5rem;
+            height: 1.5rem;
+            padding-left: 1rem;
+          }
+        }
+
+        .data-info {
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .data-info:hover .icon {
+          color: white;
+        }
+
+        .additional-info p{
+          margin: 0;
+          padding: 0.25rem;
+          display: flex;
+          align-items: center;
+          background-color: #e0e0e0;
+        }
+
+        .additional-info-td {
+          padding: 0;
+        }
+
+          .pagination {
+          background-color: rgb(0, 15, 74);
+          text-align: center;
+        }
+
+        .pagination button {
+          background-color: transparent;
+          border: none;
+          font-size: 1rem;
+          padding: 0.5rem;
+          cursor: pointer;
+          color: #e0e0e0;
+        }
+
+        .pagination button:hover{
+          font-weight: bold;
+        }
+        
+        table {
+          width: 100%;
+        }
+
+        th {
+          font-size: 1.5rem;
+          background-color: rgb(0, 15, 74);
+          color: #e0e0e0;
+        }
+
+        td {
+          font-size: 1.1rem;
+          padding: 0.5rem;
+        }        
+      
+        tr{
+          background-color: #8f8f8f;
+        }
+
+        .expanded-row {
+          background-color: #e0e0e0; 
+        }
+
+        .current-page {
+          text-decoration: underline;
+          font-weight: bold;
+        }
+      }
+    }
+  }
