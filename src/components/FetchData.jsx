@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import loadingImage from "../assets/tube-spinner.svg";
 import { toast } from "sonner";
 import './fetchData.css'
+import { useNavigate } from "react-router-dom";
 
 const FetchData = ( {setError} ) => {
   const [users, setUsers] = useState([]);
@@ -12,6 +13,12 @@ const FetchData = ( {setError} ) => {
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [expandedRow, setExpandedRow] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, []);
 
   const fetchUsers = async () => {
     if (users.length !== 0) {
@@ -29,6 +36,13 @@ const FetchData = ( {setError} ) => {
           "https://jsonplaceholder.typicode.com/users"
         );
         const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+             `Error code: ${response.status} - URL Not Found: ${response.url}`
+          );
+        }
+
         setUsers(data);
         setSortedUsers(data);
         setIsLoading(false);
@@ -37,6 +51,7 @@ const FetchData = ( {setError} ) => {
         setIsLoading(false);
         setError(error);
         toast.error("Failed to fetch data")
+        navigate('/error')
       }
     }, 1500);
   };

@@ -1,7 +1,15 @@
 import React from "react";
 import "./errorPage.css";
+import { useNavigate } from "react-router-dom";
+
 
 const ErrorPage = ({ error }) => {
+  const navigate = useNavigate();
+
+  const handleBackButton = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <div className="header">
@@ -13,10 +21,13 @@ const ErrorPage = ({ error }) => {
             ) : (
               <>
                 <span className="error-occured">An Error has occured!</span>
-                {/* <span className="error-message">{error.message}</span> */}
+                <span className="error-message">{error.message}</span>
               </>
             )}
           </div>
+          <button className="back-button" onClick={() => handleBackButton()}>
+            Go Back
+          </button>
         </div>
       </div>
     </>
