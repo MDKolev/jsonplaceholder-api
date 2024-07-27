@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 
 import "./App.css";
@@ -11,18 +11,14 @@ function App() {
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [expandedRow, setExpandedRow] = useState(null);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      const data = await response.json();
-      setUsers(data);
-      setSortedUsers(data);
-    };
-
-    fetchUsers();
-  }, []);
+  const fetchUsers = async () => {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/users"
+    );
+    const data = await response.json();
+    setUsers(data);
+    setSortedUsers(data);
+  };
 
   const sortUsers = (order) => {
     const sorted = [...users].sort((a, b) => {
@@ -88,7 +84,7 @@ function App() {
             <div className="sidebar">
               <button
                 className="fetch-button"
-                onClick={() => fetchUsersData(users)}
+                onClick={fetchUsers}
               >
                 Fetch Users
               </button>
