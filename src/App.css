@@ -155,6 +155,7 @@ body{
           .loading-image {
             width: 1.5rem;
             height: 1.5rem;
+            padding-left: 1rem;
           }
         }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import loadingImage from "./assets/tube-spinner.svg";
-
+import { Toaster, toast } from "sonner";
 import "./App.css";
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
 
   const fetchUsers = async () => {
     if (users.length !== 0) {
+      toast.info("Users already fetched");
       return;
     }
 
@@ -30,10 +31,16 @@ function App() {
       setUsers(data);
       setSortedUsers(data);
       setIsLoading(false);
-    }, 3000);
+      toast.success("Users fetched successfully");
+    }, 1500);
   };
 
   const sortUsers = (order) => {
+    if (users.length === 0) {
+      toast.error("Fetch users first");
+      return;
+    }
+
     const sorted = [...users].sort((a, b) => {
       if (order === "a-z") {
         return a.name.localeCompare(b.name);
@@ -43,6 +50,9 @@ function App() {
     });
     setSortOrder(order);
     setSortedUsers(sorted);
+    toast.info(
+      `Users sorted by ${order === "a-z" ? "ascending" : "descending"} order`
+    );
   };
 
   const indexOfLastUser = currentPage * itemsPerPage;
@@ -53,6 +63,10 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleItemsPerPage = (event) => {
+    if (users.length === 0) {
+      toast.error("Fetch users first");
+      return;
+    }
     setItemsPerPage(Number(event.target.value));
     setCurrentPage(1);
   };
@@ -62,9 +76,15 @@ function App() {
   };
 
   const resetData = () => {
+    if (users.length === 0) {
+      toast.error("No data to reset");
+      return;
+    }
+
     setUsers([]);
     setSortedUsers([]);
     setIsLoading(false);
+    toast.error("Data reset");
   };
 
   return (
@@ -122,7 +142,7 @@ function App() {
                     <td colSpan="4" className="no-user-data">
                       {isLoading ? (
                         <div>
-                          Loading data ...{" "}
+                          Loading data
                           <img
                             src={loadingImage}
                             alt="loading"
@@ -191,6 +211,7 @@ function App() {
               </div>
             </div>
           </div>
+          <Toaster richColors />
         </div>
       </div>
     </>
