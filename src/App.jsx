@@ -11,7 +11,7 @@ function App() {
     <>
       <div className="main-container">
         <div className="data-window">
-          {error !== null ? (
+          {error === null ? (
             <FetchData setError={setError} />
           ) : (
             <ErrorPage error={error} />

@@ -4,7 +4,7 @@ import loadingImage from "../assets/tube-spinner.svg";
 import { toast } from "sonner";
 import './fetchData.css'
 
-const FetchData = () => {
+const FetchData = ( {setError} ) => {
   const [users, setUsers] = useState([]);
   const [sortedUsers, setSortedUsers] = useState([]);
   const [sortOrder, setSortOrder] = useState("a-z");
@@ -24,14 +24,20 @@ const FetchData = () => {
     setSortedUsers([]);
 
     setTimeout(async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      const data = await response.json();
-      setUsers(data);
-      setSortedUsers(data);
-      setIsLoading(false);
-      toast.success("Users fetched successfully");
+      try{
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        const data = await response.json();
+        setUsers(data);
+        setSortedUsers(data);
+        setIsLoading(false);
+        toast.success("Users fetched successfully");
+      } catch(error) {
+        setIsLoading(false);
+        setError(error);
+        toast.error("Failed to fetch data")
+      }
     }, 1500);
   };
 
