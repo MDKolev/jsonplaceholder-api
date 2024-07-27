@@ -115,7 +115,7 @@ body{
       .data-table {
         padding: 1rem 0;
         width: 100%;
-        
+
         .loading-image {
           width: 1.5rem;
           height: 1.5rem;
@@ -907,13 +907,13 @@ body{
         }
 
         th {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
           background-color: rgb(0, 15, 74);
           color: #e0e0e0;
         }
 
         td {
-          font-size: 1.25rem;
+          font-size: 1.2rem;
           padding: 0.5rem;
         }        
       
