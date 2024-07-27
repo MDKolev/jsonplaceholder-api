@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
+import loadingImage from './assets/tube-spinner.svg'
 
 import "./App.css";
 
@@ -10,14 +11,22 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [expandedRow, setExpandedRow] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchUsers = async () => {
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    const data = await response.json();
-    setUsers(data);
-    setSortedUsers(data);
+    setIsLoading(true);
+    setUsers([]);
+    setSortedUsers([]);
+
+    setTimeout(async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      const data = await response.json();
+      setUsers(data);
+      setSortedUsers(data);
+      setIsLoading(false);
+    }, 3000);
   };
 
   const sortUsers = (order) => {
@@ -51,7 +60,9 @@ function App() {
   const resetData = () => {
     setUsers([]);
     setSortedUsers([]);
+    setIsLoading(false);
   };
+
 
   return (
     <>
@@ -82,10 +93,7 @@ function App() {
           </div>
           <div className="secondary-container">
             <div className="sidebar">
-              <button
-                className="fetch-button"
-                onClick={fetchUsers}
-              >
+              <button className="fetch-button" onClick={fetchUsers}>
                 Fetch Users
               </button>
               <button className="reset-button" onClick={() => resetData()}>
@@ -108,7 +116,11 @@ function App() {
                 </thead>
                 {users.length === 0 ? (
                   <tr>
-                    <td colSpan="4" className="no-user-data">No data to display, please fetch users.</td>
+                    <td colSpan="4" className="no-user-data">
+                      {isLoading
+                        ? (<div>Loading data ... <img src={loadingImage} alt="loading" className="loading-image"/></div>)
+                        : "No data to display, please fetch users."}
+                    </td>
                   </tr>
                 ) : (
                   <tbody>

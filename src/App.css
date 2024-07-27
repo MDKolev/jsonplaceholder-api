@@ -151,6 +151,11 @@ body{
         .no-user-data {
           padding: 1rem 1.5rem;
           text-align: center;
+
+          .loading-image {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
         }
 
         .data-info {
