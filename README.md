@@ -27,25 +27,19 @@
   To run the application, you need to pull the Docker Image from the Docker repository. You can do this using the following command:
 
   ```
-  docker pull mdkolev/placeholder-api:dev
+  docker pull mdkolev/jsonplaceholder-api
   ```
 
   ### Running the Docker Container
   Once you have pulled the Image, you can run the Docker container using the following command:
   ```
-  docker run -p 32770:5173 placeholder-api:dev
+  docker run -p 32770:5173 mdkolev/jsonplaceholder-api
   ```
 
   ### Accessing the Application
   After running the container, you can access the application in your web browser at:
   ```
   http://localhost:32770
-  ```
-
-  ### Removing the Docker Container
-  If you want to remove the container, you can use the following command:
-  ```
-  docker rm placeholder-api:dev
   ```
   --------------------------------------------------------------------
   ## If you encounter any issues, please feel free to open an issue or contact me directly.
